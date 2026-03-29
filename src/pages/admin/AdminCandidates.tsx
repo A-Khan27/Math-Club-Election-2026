@@ -34,7 +34,7 @@ const emojiOptions = ['🧮', '📐', '∑', '📊', '🎓', '📚', '🔬', '�
 const emptyCandidate: Candidate = {
   id: '',
   name: '',
-  position: 'President',
+  position: 'GS',
   department: 'Mathematics',
   year: '3rd Year',
   tagline: '',
@@ -405,7 +405,7 @@ export default function AdminCandidates() {
                     value={editingCandidate.position}
                     onChange={(e) => updateField('position', e.target.value)}
                     className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/50 transition-all"
-                    placeholder="e.g. President"
+                    placeholder="e.g. GS"
                   />
                 </div>
                 <div>

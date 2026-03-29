@@ -4,7 +4,7 @@ export const candidates: Candidate[] = [
   {
     id: 'arif-hossain',
     name: 'Arif Hossain',
-    position: 'President',
+    position: 'GS',
     department: 'Mathematics',
     year: '3rd Year',
     tagline: '"Making Math Accessible to Everyone"',
@@ -35,7 +35,7 @@ export const candidates: Candidate[] = [
   {
     id: 'fatima-khan',
     name: 'Fatima Khan',
-    position: 'President',
+    position: 'GS',
     department: 'Mathematics',
     year: '3rd Year',
     tagline: '"Innovation Through Numbers"',
@@ -66,7 +66,7 @@ export const candidates: Candidate[] = [
   {
     id: 'rahman-uddin',
     name: 'Rahman Uddin',
-    position: 'President',
+    position: 'GS',
     department: 'Mathematics',
     year: '4th Year',
     tagline: '"Unity in Equations"',
@@ -97,7 +97,7 @@ export const candidates: Candidate[] = [
   {
     id: 'nusrat-jahan',
     name: 'Nusrat Jahan',
-    position: 'President',
+    position: '',
     department: 'Applied Mathematics',
     year: '3rd Year',
     tagline: '"From Theory to Impact"',

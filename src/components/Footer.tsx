@@ -1,5 +1,3 @@
-import { Heart } from 'lucide-react';
-
 export default function Footer() {
   return (
     <footer className="bg-slate-900 border-t border-white/10">
@@ -14,6 +12,7 @@ export default function Footer() {
               Your voice matters. Make it count.
             </p>
           </div>
+
           <div>
             <h4 className="text-white font-semibold mb-2">Quick Links</h4>
             <ul className="space-y-1 text-sm">
@@ -23,6 +22,7 @@ export default function Footer() {
               <li><a href="/polls" className="text-slate-400 hover:text-indigo-400 transition-colors">Live Polls</a></li>
             </ul>
           </div>
+
           <div>
             <h4 className="text-white font-semibold mb-2">Election Committee</h4>
             <p className="text-slate-400 text-sm leading-relaxed">
@@ -33,9 +33,10 @@ export default function Footer() {
             </p>
           </div>
         </div>
+
         <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-slate-500 text-sm flex items-center gap-1">
-            Made with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> by Math Department
+          <p className="text-slate-500 text-sm text-center sm:text-left">
+            Developed by <span className="text-white font-medium">Ahsan Khan</span> | Publicity &amp; Publication Secretary, Math Club JUST (2025)
           </p>
           <p className="text-slate-500 text-sm">
             © 2026 Math Club. All rights reserved.

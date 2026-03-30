@@ -1,13 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Users, MessageSquare, Calendar, BarChart3, ChevronRight, Sparkles, Target, Trophy } from 'lucide-react';
-import CountdownTimer from '../components/CountdownTimer';
 import { Candidate } from '../types';
 import { candidates as defaultCandidates } from '../data/candidates';
 
 export default function Home() {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
+  
+  // Countdown State
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
+  // Load Candidates
   useEffect(() => {
     const stored = localStorage.getItem('mathclub-candidates');
     if (stored) {
@@ -16,6 +24,32 @@ export default function Home() {
       setCandidates(defaultCandidates);
     }
   }, []);
+
+  // Countdown Logic
+  useEffect(() => {
+    // Set the date we're counting down to: April 8, 2026 at 10:00:00 AM
+    const targetDate = new Date("April 8, 2026 10:00:00").getTime();
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setTimeLeft({ days, hours, minutes, seconds });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const features = [
     {
       icon: <Users className="w-6 h-6" />,
@@ -61,7 +95,7 @@ export default function Home() {
 
         {/* Floating Math Symbols */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {['∫', 'π', '∑', '∞', 'Δ', '√', 'θ', 'λ', '∂', 'ε', '∇', 'φ'].map((symbol, i) => (
+          {['∫', 'π', '∑', '∞', 'Δ', '√', 'θ', 'λ', '', 'ε', '∇', 'φ'].map((symbol, i) => (
             <span
               key={i}
               className="absolute text-white/5 font-bold select-none"
@@ -95,8 +129,12 @@ export default function Home() {
             Explore candidates, share your voice, and make your choice count.
           </p>
 
-          <div className="flex justify-center mb-12">
-            <CountdownTimer />
+          {/* Countdown Timer Integrated */}
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-12">
+            <TimeBox value={timeLeft.days} label="Days" />
+            <TimeBox value={timeLeft.hours} label="Hours" />
+            <TimeBox value={timeLeft.minutes} label="Minutes" />
+            <TimeBox value={timeLeft.seconds} label="Seconds" />
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -253,6 +291,20 @@ export default function Home() {
           </Link>
         </div>
       </section>
+    </div>
+  );
+}
+
+// Internal Component for Countdown Boxes
+function TimeBox({ value, label }: { value: number; label: string }) {
+  return (
+    <div className="flex flex-col items-center justify-center w-20 h-24 sm:w-28 sm:h-32 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-xl hover:bg-white/10 transition-colors duration-300">
+      <span className="text-3xl sm:text-5xl font-bold text-white font-mono tracking-tighter">
+        {value < 10 ? `0${value}` : value}
+      </span>
+      <span className="text-xs sm:text-sm uppercase tracking-widest text-indigo-300 mt-2 font-medium">
+        {label}
+      </span>
     </div>
   );
 }
